@@ -1,4 +1,4 @@
-export class UserData {
+export class UserDTO  {
     constructor(user) {
       this.uid = user._id;
       this.name = `${user.first_name} ${user.last_name}`;
