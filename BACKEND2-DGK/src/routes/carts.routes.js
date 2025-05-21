@@ -68,7 +68,7 @@ cartsRouter.get('/:cartId', async (req, res) => {
 cartsRouter.post(
   '/:cartId/checkout',
   passport.authenticate('jwt', { session: false }),
-  authRole('user'),
+  checkRole('user'),
   async (req, res) => {
     try {
       const { cartId } = req.params;
