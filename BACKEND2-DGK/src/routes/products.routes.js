@@ -1,35 +1,35 @@
 import { Router } from 'express';
 import passport from 'passport';
 import {
-  getProducts,
-  getProductById,
+  fetchAllProducts,
+  fetchProductById,
   addProduct,
-  updateProduct,
-  deleteProduct,
+  modifyProduct,
+  removeProduct,
 } from '../controllers/products.controller.js';
-import { checkRole  } from '../middlewares/auth.middleware.js';
+import { checkRole } from '../middlewares/auth.middleware.js';
 
 const productsRouter = Router();
 
-productsRouter.get('/', getProducts);
-productsRouter.get('/:productId', getProductById);
+productsRouter.get('/', fetchAllProducts);
+productsRouter.get('/:productId', fetchProductById);
 
-productsRouter.post( '/',
+productsRouter.post('/',
   passport.authenticate('jwt', { session: false }),
-  authRole('admin'),
-  createProduct
+  checkRole('admin'),
+  addProduct
 );
 
 productsRouter.put('/:productId',
   passport.authenticate('jwt', { session: false }),
-  authRole('admin'),
-  updateProduct
+  checkRole('admin'),
+  modifyProduct
 );
 
 productsRouter.delete('/:productId',
   passport.authenticate('jwt', { session: false }),
-  authRole('admin'),
-  deleteProduct
+  checkRole('admin'),
+  removeProduct
 );
 
 export default productsRouter;
