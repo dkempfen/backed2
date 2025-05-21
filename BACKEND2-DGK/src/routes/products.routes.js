@@ -7,7 +7,7 @@ import {
   updateProduct,
   deleteProduct,
 } from '../controllers/products.controller.js';
-import { authRole } from '../middlewares/auth.middleware.js';
+import { checkRole  } from '../middlewares/auth.middleware.js';
 
 const productsRouter = Router();
 
