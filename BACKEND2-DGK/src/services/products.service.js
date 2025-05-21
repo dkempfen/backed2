@@ -1,6 +1,6 @@
 import { ProductModel } from '../models/Product.model.js';
 
-export class ProductManager {
+export class ProductService {
   async findAll() {
     return await ProductModel.find();
   }
