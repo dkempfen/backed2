@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import passport from 'passport';
-import { connectDB } from './config/db.js';
+import connectDB from './config/db.js';
 import './config/passport.config.js';
 import userRoutes from './routes/users.routes.js';
 import productRoutes from './routes/products.routes.js';
