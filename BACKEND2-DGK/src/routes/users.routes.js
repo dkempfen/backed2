@@ -1,23 +1,25 @@
+
 import { Router } from 'express';
-import { UserDAO } from '../dao/User.dao.js';
+import { UserRepository } from '../dao/User.dao.js'; 
 import { UserDTO } from '../dto/User.dto.js';
 
-const userRouter = Router();
-const users = new UserDAO();
+const router = Router();
+const userDao = new UserRepository(); 
 
-userRouter.get('/profile', async (req, res) => {
-  try {
-    const sampleUser = await users.getById(''); 
+router.get('/current', async (req, res) => {
+    try {
+   
+        const user = await userDao.findById('681a6cbea868bc04c14636f2'); 
 
-    if (!sampleUser) {
-      return res.status(404).json({ message: 'No se encontró el usuario' });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado' });
+        }
+
+        const safeUser = new UserDTO(user); 
+        res.json(safeUser);
+    } catch (err) {
+        res.status(500).json({ error: 'Error al obtener el usuario' });
     }
-
-    const publicUser = new UserDTO(sampleUser);
-    res.json(publicUser);
-  } catch (error) {
-    res.status(500).json({ error: 'Hubo un problema al buscar el usuario' });
-  }
 });
 
-export default userRouter;
+export default router;
