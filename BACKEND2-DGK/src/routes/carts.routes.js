@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import passport from 'passport';
 import { checkRole  } from '../middlewares/auth.middleware.js';
-import { createTicket } from '../services/ticket.service.js';
+import { generateTicket  } from '../services/ticket.service.js';
 import { CartModel } from '../models/Cart.model.js';
 import { ProductModel } from '../models/Product.model.js';
 
