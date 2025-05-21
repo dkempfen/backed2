@@ -3,7 +3,7 @@ import passport from 'passport';
 import {
   getProducts,
   getProductById,
-  createProduct,
+  addProduct,
   updateProduct,
   deleteProduct,
 } from '../controllers/products.controller.js';
