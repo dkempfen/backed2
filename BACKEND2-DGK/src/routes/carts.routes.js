@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import passport from 'passport';
-import { authRole } from '../middlewares/auth.middleware.js';
+import { checkRole  } from '../middlewares/auth.middleware.js';
 import { createTicket } from '../services/ticket.service.js';
 import { CartModel } from '../models/Cart.model.js';
 import { ProductModel } from '../models/Product.model.js';
@@ -10,7 +10,7 @@ const cartsRouter = Router();
 cartsRouter.post(
   '/',
   passport.authenticate('jwt', { session: false }),
-  authRole('user'),
+  checkRole ('user'),
   async (req, res) => {
     try {
       const cart = await CartModel.create({
@@ -26,7 +26,7 @@ cartsRouter.post(
 
 cartsRouter.post('/:cartId/product/:productId',
   passport.authenticate('jwt', { session: false }),
-  authRole('user'),
+  checkRole ('user'),
   async (req, res) => {
     try {
       const { cartId, productId } = req.params;
@@ -109,3 +109,4 @@ cartsRouter.post(
 );
 
 export default cartsRouter;
+
